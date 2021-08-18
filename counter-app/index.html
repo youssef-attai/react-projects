@@ -38,23 +38,51 @@
 
         render() {
             return (
-                <div className="counter">
+                <div className="counter center">
                     <div className="count">{this.state.count}</div>
-                    <button onClick={this.decrement}>Decrement</button>
-                    <button onClick={this.reset}>Reset</button>
-                    <button onClick={this.increment}>Increment</button>
+                    <button className="decr" onClick={this.decrement}>Dec</button>
+                    <button className="reset" onClick={this.reset}>Reset</button>
+                    <button className="incr" onClick={this.increment}>Inc</button>
                 </div>
             );
         }
     }
 
     class App extends React.Component {
+        state = {
+            countInp: 0,
+            counters: [
+                <Counter key={0} start={0}/>
+            ]
+        }
+
+        handleSubmit(e){
+            e.preventDefault();
+        }
+
+        handleChange = (e) => {
+            this.setState({
+                countInp: e.target.value
+            });
+        }
+
+        addCounter = (e) => {
+            this.setState({
+                countInp: 0,
+                counters: [...this.state.counters, 
+                <Counter key={this.state.counters.length} 
+                start={this.state.countInp}/>]
+            });
+        }
+
         render() {
             return (
                 <div>
-                    <Counter start="-123"/>
-                    <Counter start="0"/>
-                    <Counter start="12"/>
+                    {this.state.counters}
+                    <form className="center" onSubmit={this.handleSubmit}>
+                        <input onChange={this.handleChange} type="number" value={this.state.countInp}></input>
+                        <button onClick={this.addCounter}>Add counter</button>
+                    </form>
                 </div>
             );
         }
