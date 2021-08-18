@@ -15,30 +15,55 @@
 
     <script type="text/babel">
 
-    class Hello extends React.Component {
+    class Counter extends React.Component {
         state = {
-            name: "Ashraf"
+            count: Number(this.props.start)
         }
 
-        handleClick = () => {
+        increment = () => {
             this.setState({
-                name: "Youssef"
+                count: this.state.count + 1
             });
         }
-        
+        decrement = () => {
+            this.setState({
+                count: this.state.count - 1
+            });
+        }
+        reset = () => {
+            this.setState({
+                count: Number(this.props.start)
+            });
+        }
+
+        render() {
+            return (
+                <div className="counter">
+                    <div className="count">{this.state.count}</div>
+                    <button onClick={this.decrement}>Decrement</button>
+                    <button onClick={this.reset}>Reset</button>
+                    <button onClick={this.increment}>Increment</button>
+                </div>
+            );
+        }
+    }
+
+    class App extends React.Component {
         render() {
             return (
                 <div>
-                    <h1>Hello, {this.state.name}!</h1>
-                    <button onClick={this.handleClick}>Click Me!</button>
+                    <Counter start="-123"/>
+                    <Counter start="0"/>
+                    <Counter start="12"/>
                 </div>
             );
         }
     }
 
     ReactDOM.render(
-        <Hello />, document.getElementById("root")
+        <App />, document.getElementById("root")
     );
+    
     </script>
 </body>
 </html>

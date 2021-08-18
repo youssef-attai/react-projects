@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: #aaa;
+}
+
+.counter {
+    text-align: center;
+    width: 50%;
+    margin: 10px auto;
+    border: 3px solid black;
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+button {
+    font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: white;
+    padding: 6px;
+    margin: 8px;
+}
+
+.count {
+    font-size: 2rem;
+}
