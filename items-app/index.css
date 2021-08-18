@@ -5,6 +5,7 @@
 
 .item {
   padding: 10px;
+  user-select: none;
 }
 
 .row {
