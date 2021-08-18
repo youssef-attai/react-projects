@@ -16,71 +16,45 @@
     <script type="text/babel">
 
 class Item extends React.Component {
-
-render(){
-
-  return (
-
-    <div className="item col-lg-4 col-md-6 col-sm-12">
-
-      <div className="border">
-
-        <div>
-
-          <b>Name: <span className="name">{this.props.name}</span></b><br/>
-
-          <b>Price: <span className="price">{this.props.price}</span></b>
-
+    render(){
+    return (
+        <div className="item col-lg-4 col-md-6 col-sm-12">
+        <div className="border">
+            <div>
+            <b>Name: <span className="name">{this.props.name}</span></b><br/>
+            <b>Price: <span className="price">{this.props.price}</span></b>
+            </div>
         </div>
-
-      </div>
-
-    </div>
-
-  );
-
-}
+        </div>
+    );
+    }
 }
 
 
 function App(){
+    return (
 
-return (
-
-  <div className="row">
-
-    <Item name="Batates" price="100.99"/>
-
-    <Item name="Ashraf" price="9.99"/>
-
-    <Item name="Khalo's Organs" price="130.99"/>
-
-    <Item name="Bullshit" price="102.99"/>
-
-    <Item name="Horseshit" price="2300.99"/>
-
-    <Item name="Youssefshit" price="1230.99"/>
-
-    <Item name="My friend Garry" price="110.99"/>
-
-    <Item name="My friend Jerry's eyeball" price="150.99"/>
-
-   <Item name="Kallmekris" price="600.99"/>
-
-   <Item name="PotatoPoPo" price="4100.99"/>
-    <Item name="Batates V2.0" price="7700.99"/>
-
-  <Item name="Wow" price="4990.99"/>
-  </div>
-);
-
+    <div className="row">
+        <Item name="Batates" price="100.99"/>
+        <Item name="Ashraf" price="9.99"/>
+        <Item name="Khalo's Organs" price="130.99"/>
+        <Item name="Bullshit" price="102.99"/>
+        <Item name="Horseshit" price="2300.99"/>
+        <Item name="Youssefshit" price="1230.99"/>
+        <Item name="My friend Garry" price="110.99"/>
+        <Item name="My friend Jerry's eyeball" price="150.99"/>
+        <Item name="Kallmekris" price="600.99"/>
+        <Item name="PotatoPoPo" price="4100.99"/>
+        <Item name="Batates V2.0" price="7700.99"/>
+        <Item name="Wow" price="4990.99"/>
+    </div>
+    );
 }
 
 
 ReactDOM.render(
   <App />, document.getElementById("root")
 );
-
 
     </script>
 </body>
