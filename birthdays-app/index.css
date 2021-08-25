@@ -26,21 +26,23 @@ body{
 
 .container {
     display: grid;
-    padding: 20px;
+    padding: 15px;
     border-radius: 25px;
     background-color: #fff;
     color: rgb(199, 94, 75);
 }
 
-h3 {padding: 10px;}
+h2 {padding: 10px;font-weight: bold;}
 
 button {
     margin-top: 10px;
     border: 0;
-    border-radius: 10px;
-    padding: 5px;
+    border-radius: 25px;
+    padding: 10px;
     background-color: rgb(199, 94, 75);    
     color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 
@@ -50,8 +52,8 @@ button:hover {
 
 .list > div{
     display: flex;
-    padding: 5px;
-    border-radius: 10px;
+    padding: 15px;
+    border-radius: 25px;
     margin: 5px;
     color: rgb(199, 94, 75);
     justify-content: space-between;
@@ -69,4 +71,8 @@ button:hover {
 img {
     width: 60px;
     border-radius: 50px;
+}
+
+main {
+    width: 50%;
 }
