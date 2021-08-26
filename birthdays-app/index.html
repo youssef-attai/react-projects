@@ -37,17 +37,54 @@
     }
 
     const data = [
-        {id: 1, name:"youssef attai", age:19, img:"https://scontent.fcai20-3.fna.fbcdn.net/v/t1.6435-9/121809962_1020130335101541_3324297546801483781_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=6hwzkVfWM4wAX-OE6yz&tn=RirxbouqxDkNx4yg&_nc_ht=scontent.fcai20-3.fna&oh=754bc45b5cbb0191d8e4ee48996559d2&oe=614C6B94"},
-        {id: 2, name:"omar attai", age:16, img:"https://scontent.fcai20-3.fna.fbcdn.net/v/t1.6435-9/171236293_2898104550458237_8562579819045310918_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=554dF0zzjh4AX9WfCG-&tn=RirxbouqxDkNx4yg&_nc_ht=scontent.fcai20-3.fna&oh=13eceab89f85c64009828c4f29548d06&oe=614BAC0D"},
-        {id: 3, name:"nour ahmed", age:19, img:"https://scontent.fcai20-3.fna.fbcdn.net/v/t1.6435-9/138868824_2847471858856899_8288801386080265680_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=gUmOJ45DDUcAX8K1Dtd&tn=RirxbouqxDkNx4yg&_nc_ht=scontent.fcai20-3.fna&oh=fdc9ab8d293dfd072e8745e75f9a8430&oe=614CB51C"},
+        {id: 0, name:"youssef attai", age:19, img:"https://scontent.fcai20-3.fna.fbcdn.net/v/t1.6435-9/121809962_1020130335101541_3324297546801483781_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=6hwzkVfWM4wAX-OE6yz&tn=RirxbouqxDkNx4yg&_nc_ht=scontent.fcai20-3.fna&oh=754bc45b5cbb0191d8e4ee48996559d2&oe=614C6B94"},
+        {id: 1, name:"omar attai", age:16, img:"https://scontent.fcai20-3.fna.fbcdn.net/v/t1.6435-9/171236293_2898104550458237_8562579819045310918_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=554dF0zzjh4AX9WfCG-&tn=RirxbouqxDkNx4yg&_nc_ht=scontent.fcai20-3.fna&oh=13eceab89f85c64009828c4f29548d06&oe=614BAC0D"},
+        {id: 2, name:"nour ahmed", age:19, img:"https://scontent.fcai20-3.fna.fbcdn.net/v/t1.6435-9/138868824_2847471858856899_8288801386080265680_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=gUmOJ45DDUcAX8K1Dtd&tn=RirxbouqxDkNx4yg&_nc_ht=scontent.fcai20-3.fna&oh=fdc9ab8d293dfd072e8745e75f9a8430&oe=614CB51C"},
     ];
 
     function App () {
         const [people, setPeople] = React.useState(data);
+        const [inp, setInp] = React.useState({
+            name: "",
+            age: "",
+            img: ""
+        });
         return (
             <main>
                 <section className="container">
                     <h2>{people.length} birthdays today</h2>
+                    <div className="add-div">
+                        <input id="name-inp" type="text" placeholder="name" onChange={(e)=>{
+                            setInp({
+                                name: e.target.value,
+                                age: inp.age,
+                                img: inp.img
+                            })
+                        }} value={inp.name}/>
+                        <input id="age-inp" type="text" placeholder="age" onChange={(e)=>{
+                            setInp({
+                                name: inp.name,
+                                age: e.target.value,
+                                img: inp.img
+                            })
+                        }} value={inp.age}/>
+                        <input id="img-inp" type="text" placeholder="image url" onChange={(e)=>{
+                            setInp({
+                                name: inp.name,
+                                age: inp.age,
+                                img: e.target.value
+                            })
+                        }} value={inp.img}/>
+                        <button className="add-button" onClick={()=>{
+                            setPeople([...people, 
+                            {
+                                id: people.length,
+                                name: inp.name,
+                                age: inp.age,
+                                img: inp.img
+                            }]);
+                        }}>+</button>
+                    </div>
                     <List people={people} setPeople={setPeople}/>
                     <button onClick={()=>{setPeople([])}}>clear all</button>
                 </section>

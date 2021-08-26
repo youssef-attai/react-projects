@@ -17,7 +17,7 @@ body{
 }
 
 .app {
-    background-color: rgb(199, 94, 75);    
+    background-color: rgb(179, 74, 55);    
     height: 100%;
     display: flex;
     justify-content: center;
@@ -30,9 +30,34 @@ body{
     border-radius: 25px;
     background-color: #fff;
     color: rgb(199, 94, 75);
+    height: 100%;
 }
 
 h2 {padding: 10px;font-weight: bold;}
+
+input {
+    padding: 10px;
+    width: 30%;
+    margin-right: 10px;
+    border: 1px solid rgb(199, 94, 75);
+    color: rgb(199, 94, 75);
+    border-radius: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.add-div{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+button.add-button {
+    width: 10%;
+    border-radius: 20px;
+}
 
 button {
     margin-top: 10px;
@@ -43,6 +68,7 @@ button {
     color: #fff;
     font-size: 1rem;
     font-weight: bold;
+    height: fit-content;
 }
 
 
@@ -57,6 +83,11 @@ button:hover {
     margin: 5px;
     color: rgb(199, 94, 75);
     justify-content: space-between;
+}
+
+.list {
+    height: 100%;
+    overflow-y: auto;
 }
 
 .list h4, .list h5{
@@ -75,4 +106,19 @@ img {
 
 main {
     width: 50%;
+    height: 70%;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #ddd;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(199, 94, 75);
+    border-radius: 15px;
+    width: 5px;
 }
