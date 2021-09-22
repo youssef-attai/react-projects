@@ -13,6 +13,8 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
+
+const ThemeContext = React.createContext();
     
 
 class CounterClass extends React.Component {
@@ -29,32 +31,50 @@ class CounterClass extends React.Component {
 
     render() {
         return (
-            <div className="counter">
-                <p>CounterClass</p>
-                <h1 className="counter-header">{this.state.count}</h1>
-                <div className="counter-body">
-                    <button onClick={()=>this.changeCount(-1)}>-</button>    
-                    <button onClick={()=>this.setState({count: this.props.initialCount})}>reset</button>
-                    <button onClick={()=>this.changeCount(1)}>+</button>    
+            <ThemeContext.Consumer>{(style =>(
+                <div style={style} className="counter">
+                    <p style={style}>CounterClass</p>
+                    <h1 className="counter-header" style={style}>{this.state.count}</h1>
+                    <div className="counter-body" style={style}>
+                        <button style={style} onClick={()=>this.changeCount(-1)}>-</button>    
+                        <button style={style} onClick={()=>this.setState({count: this.props.initialCount})}>reset</button>
+                        <button style={style} onClick={()=>this.changeCount(1)}>+</button>    
+                    </div>
                 </div>
-            </div>
+            ))}</ThemeContext.Consumer>
+        );
+    }
+}
+
+class NavBar extends React.Component {
+    render() {
+        return (
+            <ThemeContext.Consumer>{
+                style=>(
+                    <div style={style} className="nav-bar">
+                        <p>Counter V2.0</p>
+                        <button style={style} onClick={this.props.changeTheme}>{style.backgroundColor==="#fff" ? "Switch to Dark mode" : "Switch to Light mode"}</button>
+                    </div>
+                )
+            }</ThemeContext.Consumer>
         );
     }
 }
 
 function CounterFunction({initialCount})  {
     const [count, setCount] = React.useState(initialCount);
+    const style = React.useContext(ThemeContext);
 
     return (
-        <div className="counter">
-            <p>CounterFunction</p>
-            <h1 className="counter-header">{count}</h1>
-            <div className="counter-body">
-                <button onClick={()=>{
+        <div style={style} className="counter">
+            <p style={style} >CounterFunction</p>
+            <h1 style={style} className="counter-header">{count}</h1>
+            <div style={style} className="counter-body">
+                <button style={style} onClick={()=>{
                     setCount(prevCount=>(prevCount-1))
                 }}>-</button>    
-                <button onClick={()=>{setCount(initialCount)}}>reset</button>
-                <button onClick={()=>{
+                <button style={style} onClick={()=>{setCount(initialCount)}}>reset</button>
+                <button style={style} onClick={()=>{
                     setCount(prevCount=>(prevCount+1))
                 }}>+</button>    
             </div>
@@ -62,17 +82,45 @@ function CounterFunction({initialCount})  {
     );
 }
 
-function App() {
+function CountersContainer() {
+    const style = React.useContext(ThemeContext);
+
     return (
-        <div className="app">
-            <div className="nav-bar">
-                <button>Change theme</button>
-            </div>
-            <div className="container">
-                <CounterClass initialCount={10}/>
-                <CounterFunction initialCount={5}/>
-            </div>
+        <div className="container" style={style}>
+            <CounterClass initialCount={10}/>
+            <CounterFunction initialCount={5}/>
         </div>
+    );
+}
+
+function App() {
+    const [theme, setTheme] = React.useState({
+        backgroundColor: "#000",
+        color: "#fff",
+        borderColor: "#fff"
+    });
+
+    return (
+        <ThemeContext.Provider value={theme}>
+            <div className="app" style={{backgroundColor: theme.backgroundColor}}>
+                <NavBar changeTheme={()=>{
+                    if (theme.backgroundColor === "#fff") {
+                        setTheme({
+                            backgroundColor: "#000",
+                            color: "#fff",
+                            borderColor: "#fff"
+                        })
+                    } else {
+                        setTheme({
+                            backgroundColor: "#fff",
+                            color: "#000",
+                            borderColor: "#000"
+                        })
+                    }
+                }}/>
+                <CountersContainer />
+            </div>
+        </ThemeContext.Provider>
     );
 }
 
