@@ -4,9 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script> 
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="./index.css">
     <title>Counter App V2</title>
 </head>
 <body>
+    <div id="root"></div>
+    <script type="text/babel">
     
+
+class CounterClass extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            count: props.initialCount
+        };
+    }
+
+    changeCount(amount) {
+        this.setState(prevState => ({count: prevState.count + amount}));
+    }
+
+    render() {
+        return (
+            <div className="counter">
+                <p>CounterClass</p>
+                <h1 className="counter-header">{this.state.count}</h1>
+                <div className="counter-body">
+                    <button onClick={()=>this.changeCount(-1)}>-</button>    
+                    <button onClick={()=>this.setState({count: this.props.initialCount})}>reset</button>
+                    <button onClick={()=>this.changeCount(1)}>+</button>    
+                </div>
+            </div>
+        );
+    }
+}
+
+function CounterFunction({initialCount})  {
+    const [count, setCount] = React.useState(initialCount);
+
+    return (
+        <div className="counter">
+            <p>CounterFunction</p>
+            <h1 className="counter-header">{count}</h1>
+            <div className="counter-body">
+                <button onClick={()=>{
+                    setCount(prevCount=>(prevCount-1))
+                }}>-</button>    
+                <button onClick={()=>{setCount(initialCount)}}>reset</button>
+                <button onClick={()=>{
+                    setCount(prevCount=>(prevCount+1))
+                }}>+</button>    
+            </div>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <div className="app">
+            <div className="nav-bar">
+                <button>Change theme</button>
+            </div>
+            <div className="container">
+                <CounterClass initialCount={10}/>
+                <CounterFunction initialCount={5}/>
+            </div>
+        </div>
+    );
+}
+
+ReactDOM.render(
+    <App />,
+    document.getElementById("root")
+);
+
+    </script>
 </body>
 </html>
